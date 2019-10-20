@@ -30,7 +30,6 @@ $(document).ready(function () {
     let height = window.innerHeight;
     let keyLength;
 
-
     // Dynamically setting the calculator dimensions relative to viewport dimensions.
     if (width / calculatorWidth > height / calculatorHeight) {
         keyLength = Math.floor((Math.floor(height * 0.8) - heightGridGaps * gridGap) / calculatorHeight);
