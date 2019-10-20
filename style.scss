@@ -1,0 +1,1661 @@
+/* Border glow related variables */
+$border-width: 2px;
+$glow-color: #ffffff;
+
+$border-glow: 0 0 3px $glow-color,
+              0 0 6px $glow-color,
+              0 0 9px $glow-color,
+              0 0 12px $glow-color,
+              0 0 15px $glow-color,
+              0 0 18px $glow-color,
+        inset 0 0 3px $glow-color,
+        inset 0 0 6px $glow-color,
+        inset 0 0 9px $glow-color;
+
+/* Border glow transition related variables */
+
+// Main border
+$timing-function-1: ease-in;
+$timing-function-2: ease-out;
+$half-life-1: 1s;
+
+// Display and borders
+$timing-function-3: linear;
+$half-life-2: .5s;
+$delay-1: $half-life-1 * 2;
+
+/* Character variables */
+$character-color: #00a8ff;
+$character-glow-color: #00a8ff;
+$operation-character-color: #c21525;
+
+$random-x1: 100;
+$random-x2: 50;
+$random-x3: 100;
+
+$delay-2: $delay-1 + $half-life-2 * 5;
+
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #010b13;
+    position: relative;
+    z-index: 1;
+}
+
+#calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1.5fr repeat(5, 1fr);
+    grid-gap: 2px;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+    background-color: transparent;
+    color: $character-color;
+    grid-template-areas: 
+        "screen screen screen screen"
+        "clear negate percent divide"
+        "seven eight nine multiply"
+        "four five six minus"
+        "one two three plus"
+        "zero comma backspace equal";
+}
+
+/* Calculator glowing border */
+
+.calculator-border:nth-of-type(1) {
+    content:'';
+    position: absolute;
+    width: $border-width;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow: $border-glow;
+
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    transform-origin: top left;
+	will-change: transform;
+}
+
+#calculator.animate .calculator-border:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    transition: transform $half-life-1 $timing-function-1;
+}
+
+.calculator-border:nth-of-type(2) {
+    content:'';
+    position: absolute;
+    width: 100%;
+    height: $border-width;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow: $border-glow;
+    
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+    transform-origin: top left;
+	will-change: transform;
+}
+
+#calculator.animate .calculator-border:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-1 $timing-function-1;
+}
+
+.calculator-border:nth-of-type(3) {
+    position: absolute;
+    width: 100%;
+    height: $border-width;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow: $border-glow;
+    
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    will-change: transform;
+}
+
+#calculator.animate .calculator-border:nth-of-type(3) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-1 $timing-function-1 $half-life-1;
+}
+
+.calculator-border:nth-of-type(4) {
+    position: absolute;
+    width: $border-width;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    box-shadow: $border-glow;
+    
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    transform-origin: top right;
+    will-change: transform;
+}
+
+#calculator.animate .calculator-border:nth-of-type(4) {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    transition: transform $half-life-1 $timing-function-1 $half-life-1;
+}
+
+/* Calculator display and controls */
+
+#screen {
+    grid-area: screen;
+    display: grid;
+    justify-items: end;
+    align-items: end;
+    width: 90%;
+    height: 80%;
+    overflow: hidden;
+    position: relative;
+
+    span {
+        position: absolute;
+        right: 0;
+        white-space: nowrap;
+        opacity: 0;
+        will-change: opacity;
+    }
+
+    #ruler {
+        visibility: hidden;
+    }
+}
+
+#calculator.animate #screen span:nth-of-type(1) {
+    opacity: 1;
+    -webkit-transition: opacity .5s linear $delay-2 + 2.5s;
+            transition: opacity .5s linear $delay-2 + 2.5s;
+}
+
+#clear {
+    grid-area: clear;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        height: $border-width;
+        width: 100%;
+        bottom: -2px;
+        right: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        position: absolute;
+        width: 100%;
+        height: $border-width;
+        top: -2px;
+        right: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(4) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(4) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #clear span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-1 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #clear span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #clear span:nth-of-type(3) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 4 + $delay-1;
+}
+
+#calculator.animate #clear span:nth-of-type(4) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#negate {
+    grid-area: negate;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        height: $border-width;
+        width: calc(100% + 2px);
+        right: -1px;
+        top: -2px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(3) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #negate span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #negate span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #negate span:nth-of-type(3) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#percent {
+    grid-area: percent;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        height: $border-width;
+        width: calc(100% + 2px);
+        left: -1px;
+        top: -2px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(2) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #percent span:nth-of-type(1) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #percent span:nth-of-type(2) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#divide {
+    grid-area: divide;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: $operation-character-color;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        left: -2px;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: bottom left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        height: $border-width;
+        width: 100%;
+        bottom: -2px;
+        left: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: bottom left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        position: absolute;
+        width: 100%;
+        height: $border-width;
+        top: -2px;
+        left: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(4) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(4) {
+            text-shadow: 0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color;
+        }
+    }
+}
+
+#calculator.animate #divide span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #divide span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #divide span:nth-of-type(3) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 4 + $delay-1;
+}
+
+#calculator.animate #divide span:nth-of-type(4) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#seven {
+    grid-area: seven;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(1) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #seven span:nth-of-type(1) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#eight {
+    grid-area: eight;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        left: -2px;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: bottom left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        position: absolute;
+        height: $border-width;
+        width: calc(100% + 2px);
+        right: -1px;
+        top: -2px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(4) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(4) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #eight span:nth-of-type(1) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 + $delay-1;
+}
+
+#calculator.animate #eight span:nth-of-type(2) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #eight span:nth-of-type(3) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #eight span:nth-of-type(4) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#nine {
+    grid-area: nine;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        height: $border-width;
+        width: calc(100% + 2px);
+        left: -1px;
+        top: -2px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(3) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #nine span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #nine span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #nine span:nth-of-type(3) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#multiply {
+    grid-area: multiply;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: $operation-character-color;
+
+    span:nth-of-type(1) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(1) {
+            text-shadow: 0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color;
+        }
+    }
+}
+
+#calculator.animate #multiply span:nth-of-type(1) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#four {
+    grid-area: four;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 50%;
+        right: -2px;
+        top: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        width: $border-width;
+        height: 50%;
+        right: -2px;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        position: absolute;
+        width: 100%;
+        height: $border-width;
+        top: -2px;
+        right: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(4) {
+        position: absolute;
+        height: $border-width;
+        width: 100%;
+        bottom: -2px;
+        right: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(5) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(5) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #four span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 / 2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #four span:nth-of-type(2) {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    transition: transform $half-life-2 / 2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #four span:nth-of-type(3) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #four span:nth-of-type(4) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #four span:nth-of-type(5) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#five {
+    grid-area: five;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: center right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        width: 100%;
+        height: $border-width;
+        top: -2px;
+        right: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        position: absolute;
+        height: $border-width;
+        width: 100%;
+        bottom: -2px;
+        right: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(4) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(4) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #five span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $delay-1; 
+}
+
+#calculator.animate #five span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 + $delay-1;
+}
+
+#calculator.animate #five span:nth-of-type(3) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 + $delay-1;
+}
+
+#calculator.animate #five span:nth-of-type(4) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#six {
+    grid-area: six;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: calc(100% + 2px);
+        height: $border-width;
+        top: -2px;
+        left: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        height: $border-width;
+        width: calc(100% + 2px);
+        bottom: -2px;
+        left: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        position: absolute;
+        width: $border-width;
+        height: 50%;
+        right: -2px;
+        top: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(4) {
+        position: absolute;
+        width: $border-width;
+        height: 50%;
+        right: -2px;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(5) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(5) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #six span:nth-of-type(1) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 + $delay-1;
+}
+
+#calculator.animate #six span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 + $delay-1;
+}
+
+#calculator.animate #six span:nth-of-type(3) {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    transition: transform $half-life-2 / 2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #six span:nth-of-type(4) {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    transition: transform $half-life-2 / 2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #six span:nth-of-type(5) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#minus {
+    grid-area: minus;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: $operation-character-color;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: 100%;
+        height: $border-width;
+        top: -2px;
+        left: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+        
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        height: $border-width;
+        width: 100%;
+        bottom: -2px;
+        left: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+        
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: bottom left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(3) {
+            text-shadow: 0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color;
+        }
+    }
+}
+
+#calculator.animate #minus span:nth-of-type(1) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #minus span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #minus span:nth-of-type(3) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#one {
+    grid-area: one;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        height: $border-width;
+        width: 100%;
+        right: -1px;
+        bottom: -2px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(2) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #one span:nth-of-type(1) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #one span:nth-of-type(2) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#two {
+    grid-area: two;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        top: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        left: -2px;
+        top: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        position: absolute;
+        height: $border-width;
+        width: calc(100% + 2px);
+        right: -1px;
+        bottom: -2px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(4) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(4) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #two span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 + $delay-1;
+}
+
+#calculator.animate #two span:nth-of-type(2) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #two span:nth-of-type(3) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #two span:nth-of-type(4) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#three {
+    grid-area: three;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        top: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        height: $border-width;
+        width: calc(100% + 2px);
+        left: -1px;
+        bottom: -2px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: bottom left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(3) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #three span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #three span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #three span:nth-of-type(3) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#plus {
+    grid-area: plus;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: $operation-character-color;
+
+    span:nth-of-type(1) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(1) {
+            text-shadow: 0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color;
+        }
+    }
+}
+
+#calculator.animate #plus span:nth-of-type(1) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#zero {
+    grid-area: zero;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        top: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(2) {
+            text-shadow: 0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 40px $character-glow-color,
+                         0 0 80px $character-glow-color,
+                         0 0 120px $character-glow-color,
+                         0 0 160px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #zero span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #zero span:nth-of-type(2) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#comma {
+    grid-area: comma;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        right: -2px;
+        top: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: top right;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(2) {
+            text-shadow: 0 0 5px $character-glow-color,
+                         0 0 5px $character-glow-color,
+                         0 0 10px $character-glow-color,
+                         0 0 10px $character-glow-color,
+                         0 0 20px $character-glow-color,
+                         0 0 20px $character-glow-color;
+        }
+    }
+}
+
+#calculator.animate #comma span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 2 + $delay-1;
+}
+
+#calculator.animate #comma span:nth-of-type(2) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#backspace {
+    grid-area: backspace;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    svg {
+        fill: $character-color;
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        svg {
+            filter: drop-shadow(0 0 5px $character-color) drop-shadow(0 0 10px $character-color);
+        }
+    }
+}
+
+#calculator.animate #backspace svg {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+#equal {
+    grid-area: equal;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: $operation-character-color;
+
+    span:nth-of-type(1) {
+        position: absolute;
+        width: $border-width;
+        height: 100%;
+        left: -2px;
+        top: 0;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(2) {
+        position: absolute;
+        height: $border-width;
+        width: 100%;
+        top: -2px;
+        left: -1px;
+        z-index: 1;
+        box-shadow: $border-glow;
+
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        transform-origin: top left;
+        will-change: transform;
+    }
+
+    span:nth-of-type(3) {
+        opacity: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        span:nth-of-type(3) {
+            text-shadow: 0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 10px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 20px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 40px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 80px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 120px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color,
+                         0 0 160px $operation-character-color;
+        }
+    }
+}
+
+#calculator.animate #equal span:nth-of-type(1) {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #equal span:nth-of-type(2) {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: transform $half-life-2 $timing-function-3 $half-life-2 * 3 + $delay-1;
+}
+
+#calculator.animate #equal span:nth-of-type(3) {
+    animation: animate-in ((random($random-x1) + $random-x2) / $random-x3) + s linear ($delay-2 + random()) forwards;
+}
+
+@keyframes animate-in {
+    0%    { opacity: 0; }
+    3%    { opacity: 0.4; }
+    6%    { opacity: 1; }
+    7%    { opacity: 0.4; }
+    8%    { opacity: 1; }
+    9%    { opacity: 0.4; }
+    10%   { opacity: 1; }
+    89%   { opacity: 1; }
+    90%   { opacity: 0.4; }
+    100%  { opacity: 1; }
+}

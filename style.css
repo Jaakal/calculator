@@ -1,0 +1,1815 @@
+/* Border glow related variables */
+/* Border glow transition related variables */
+/* Character variables */
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#container {
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #010b13;
+  position: relative;
+  z-index: 1;
+}
+
+#calculator {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: 1.5fr (1fr)[5];
+      grid-template-rows: 1.5fr repeat(5, 1fr);
+  grid-gap: 2px;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  background-color: transparent;
+  color: #00a8ff;
+      grid-template-areas: "screen screen screen screen" "clear negate percent divide" "seven eight nine multiply" "four five six minus" "one two three plus" "zero comma backspace equal";
+}
+
+/* Calculator glowing border */
+.calculator-border:nth-of-type(1) {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#calculator.animate .calculator-border:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 1s ease-in;
+  transition: -webkit-transform 1s ease-in;
+  transition: transform 1s ease-in;
+  transition: transform 1s ease-in, -webkit-transform 1s ease-in;
+}
+
+.calculator-border:nth-of-type(2) {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#calculator.animate .calculator-border:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 1s ease-in;
+  transition: -webkit-transform 1s ease-in;
+  transition: transform 1s ease-in;
+  transition: transform 1s ease-in, -webkit-transform 1s ease-in;
+}
+
+.calculator-border:nth-of-type(3) {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  will-change: transform;
+}
+
+#calculator.animate .calculator-border:nth-of-type(3) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 1s ease-in 1s;
+  transition: -webkit-transform 1s ease-in 1s;
+  transition: transform 1s ease-in 1s;
+  transition: transform 1s ease-in 1s, -webkit-transform 1s ease-in 1s;
+}
+
+.calculator-border:nth-of-type(4) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#calculator.animate .calculator-border:nth-of-type(4) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 1s ease-in 1s;
+  transition: -webkit-transform 1s ease-in 1s;
+  transition: transform 1s ease-in 1s;
+  transition: transform 1s ease-in 1s, -webkit-transform 1s ease-in 1s;
+}
+
+/* Calculator display and controls */
+#screen {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: screen;
+  display: -ms-grid;
+  display: grid;
+  justify-items: end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  width: 90%;
+  height: 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+#screen span {
+  position: absolute;
+  right: 0;
+  white-space: nowrap;
+  opacity: 0;
+  will-change: opacity;
+}
+
+#screen #ruler {
+  visibility: hidden;
+}
+
+#calculator.animate #screen span:nth-of-type(1) {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s linear 7s;
+  transition: opacity 0.5s linear 7s;
+}
+
+#clear {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: clear;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#clear span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  bottom: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#clear span:nth-of-type(2) {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: -2px;
+  right: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#clear span:nth-of-type(3) {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: -2px;
+  right: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#clear span:nth-of-type(4) {
+  opacity: 0;
+}
+
+#clear:hover {
+  cursor: pointer;
+}
+
+#clear:hover span:nth-of-type(4) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #clear span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s ease-in 3.5s;
+  transition: -webkit-transform 0.5s ease-in 3.5s;
+  transition: transform 0.5s ease-in 3.5s;
+  transition: transform 0.5s ease-in 3.5s, -webkit-transform 0.5s ease-in 3.5s;
+}
+
+#calculator.animate #clear span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #clear span:nth-of-type(3) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 4s;
+  transition: -webkit-transform 0.5s linear 4s;
+  transition: transform 0.5s linear 4s;
+  transition: transform 0.5s linear 4s, -webkit-transform 0.5s linear 4s;
+}
+
+#calculator.animate #clear span:nth-of-type(4) {
+  -webkit-animation: animate-in 1.03s linear 5.29339s forwards;
+          animation: animate-in 1.03s linear 5.29339s forwards;
+}
+
+#negate {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: negate;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#negate span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  bottom: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#negate span:nth-of-type(2) {
+  position: absolute;
+  height: 2px;
+  width: calc(100% + 2px);
+  right: -1px;
+  top: -2px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#negate span:nth-of-type(3) {
+  opacity: 0;
+}
+
+#negate:hover {
+  cursor: pointer;
+}
+
+#negate:hover span:nth-of-type(3) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #negate span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #negate span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #negate span:nth-of-type(3) {
+  -webkit-animation: animate-in 0.52s linear 5.28984s forwards;
+          animation: animate-in 0.52s linear 5.28984s forwards;
+}
+
+#percent {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: percent;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#percent span:nth-of-type(1) {
+  position: absolute;
+  height: 2px;
+  width: calc(100% + 2px);
+  left: -1px;
+  top: -2px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#percent span:nth-of-type(2) {
+  opacity: 0;
+}
+
+#percent:hover {
+  cursor: pointer;
+}
+
+#percent:hover span:nth-of-type(2) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #percent span:nth-of-type(1) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #percent span:nth-of-type(2) {
+  -webkit-animation: animate-in 1.44s linear 4.65346s forwards;
+          animation: animate-in 1.44s linear 4.65346s forwards;
+}
+
+#divide {
+  -ms-grid-row: 2;
+  -ms-grid-column: 4;
+  grid-area: divide;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #c21525;
+}
+
+#divide span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  left: -2px;
+  bottom: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  will-change: transform;
+}
+
+#divide span:nth-of-type(2) {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: -2px;
+  left: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  will-change: transform;
+}
+
+#divide span:nth-of-type(3) {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: -2px;
+  left: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#divide span:nth-of-type(4) {
+  opacity: 0;
+}
+
+#divide:hover {
+  cursor: pointer;
+}
+
+#divide:hover span:nth-of-type(4) {
+  text-shadow: 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525;
+}
+
+#calculator.animate #divide span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #divide span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #divide span:nth-of-type(3) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 4s;
+  transition: -webkit-transform 0.5s linear 4s;
+  transition: transform 0.5s linear 4s;
+  transition: transform 0.5s linear 4s, -webkit-transform 0.5s linear 4s;
+}
+
+#calculator.animate #divide span:nth-of-type(4) {
+  -webkit-animation: animate-in 0.82s linear 4.59756s forwards;
+          animation: animate-in 0.82s linear 4.59756s forwards;
+}
+
+#seven {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: seven;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#seven span:nth-of-type(1) {
+  opacity: 0;
+}
+
+#seven:hover {
+  cursor: pointer;
+}
+
+#seven:hover span:nth-of-type(1) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #seven span:nth-of-type(1) {
+  -webkit-animation: animate-in 0.81s linear 4.68493s forwards;
+          animation: animate-in 0.81s linear 4.68493s forwards;
+}
+
+#eight {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: eight;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#eight span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  bottom: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#eight span:nth-of-type(2) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  left: -2px;
+  bottom: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  will-change: transform;
+}
+
+#eight span:nth-of-type(3) {
+  position: absolute;
+  height: 2px;
+  width: calc(100% + 2px);
+  right: -1px;
+  top: -2px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#eight span:nth-of-type(4) {
+  opacity: 0;
+}
+
+#eight:hover {
+  cursor: pointer;
+}
+
+#eight:hover span:nth-of-type(4) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #eight span:nth-of-type(1) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 2.5s;
+  transition: -webkit-transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s, -webkit-transform 0.5s linear 2.5s;
+}
+
+#calculator.animate #eight span:nth-of-type(2) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #eight span:nth-of-type(3) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #eight span:nth-of-type(4) {
+  -webkit-animation: animate-in 0.64s linear 5.01267s forwards;
+          animation: animate-in 0.64s linear 5.01267s forwards;
+}
+
+#nine {
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
+  grid-area: nine;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#nine span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  bottom: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#nine span:nth-of-type(2) {
+  position: absolute;
+  height: 2px;
+  width: calc(100% + 2px);
+  left: -1px;
+  top: -2px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#nine span:nth-of-type(3) {
+  opacity: 0;
+}
+
+#nine:hover {
+  cursor: pointer;
+}
+
+#nine:hover span:nth-of-type(3) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #nine span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #nine span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #nine span:nth-of-type(3) {
+  -webkit-animation: animate-in 0.83s linear 4.59338s forwards;
+          animation: animate-in 0.83s linear 4.59338s forwards;
+}
+
+#multiply {
+  -ms-grid-row: 3;
+  -ms-grid-column: 4;
+  grid-area: multiply;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #c21525;
+}
+
+#multiply span:nth-of-type(1) {
+  opacity: 0;
+}
+
+#multiply:hover {
+  cursor: pointer;
+}
+
+#multiply:hover span:nth-of-type(1) {
+  text-shadow: 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525;
+}
+
+#calculator.animate #multiply span:nth-of-type(1) {
+  -webkit-animation: animate-in 1.47s linear 5.225s forwards;
+          animation: animate-in 1.47s linear 5.225s forwards;
+}
+
+#four {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: four;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#four span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 50%;
+  right: -2px;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#four span:nth-of-type(2) {
+  position: absolute;
+  width: 2px;
+  height: 50%;
+  right: -2px;
+  bottom: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#four span:nth-of-type(3) {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: -2px;
+  right: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#four span:nth-of-type(4) {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: -2px;
+  right: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#four span:nth-of-type(5) {
+  opacity: 0;
+}
+
+#four:hover {
+  cursor: pointer;
+}
+
+#four:hover span:nth-of-type(5) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #four span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.25s linear 3s;
+  transition: -webkit-transform 0.25s linear 3s;
+  transition: transform 0.25s linear 3s;
+  transition: transform 0.25s linear 3s, -webkit-transform 0.25s linear 3s;
+}
+
+#calculator.animate #four span:nth-of-type(2) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.25s linear 3s;
+  transition: -webkit-transform 0.25s linear 3s;
+  transition: transform 0.25s linear 3s;
+  transition: transform 0.25s linear 3s, -webkit-transform 0.25s linear 3s;
+}
+
+#calculator.animate #four span:nth-of-type(3) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #four span:nth-of-type(4) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #four span:nth-of-type(5) {
+  -webkit-animation: animate-in 0.88s linear 5.02601s forwards;
+          animation: animate-in 0.88s linear 5.02601s forwards;
+}
+
+#five {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: five;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#five span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: center right;
+          transform-origin: center right;
+  will-change: transform;
+}
+
+#five span:nth-of-type(2) {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: -2px;
+  right: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#five span:nth-of-type(3) {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: -2px;
+  right: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#five span:nth-of-type(4) {
+  opacity: 0;
+}
+
+#five:hover {
+  cursor: pointer;
+}
+
+#five:hover span:nth-of-type(4) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #five span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 2s;
+  transition: -webkit-transform 0.5s linear 2s;
+  transition: transform 0.5s linear 2s;
+  transition: transform 0.5s linear 2s, -webkit-transform 0.5s linear 2s;
+}
+
+#calculator.animate #five span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 2.5s;
+  transition: -webkit-transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s, -webkit-transform 0.5s linear 2.5s;
+}
+
+#calculator.animate #five span:nth-of-type(3) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 2.5s;
+  transition: -webkit-transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s, -webkit-transform 0.5s linear 2.5s;
+}
+
+#calculator.animate #five span:nth-of-type(4) {
+  -webkit-animation: animate-in 0.88s linear 4.9202s forwards;
+          animation: animate-in 0.88s linear 4.9202s forwards;
+}
+
+#six {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: six;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#six span:nth-of-type(1) {
+  position: absolute;
+  width: calc(100% + 2px);
+  height: 2px;
+  top: -2px;
+  left: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#six span:nth-of-type(2) {
+  position: absolute;
+  height: 2px;
+  width: calc(100% + 2px);
+  bottom: -2px;
+  left: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#six span:nth-of-type(3) {
+  position: absolute;
+  width: 2px;
+  height: 50%;
+  right: -2px;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#six span:nth-of-type(4) {
+  position: absolute;
+  width: 2px;
+  height: 50%;
+  right: -2px;
+  bottom: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#six span:nth-of-type(5) {
+  opacity: 0;
+}
+
+#six:hover {
+  cursor: pointer;
+}
+
+#six:hover span:nth-of-type(5) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #six span:nth-of-type(1) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 2.5s;
+  transition: -webkit-transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s, -webkit-transform 0.5s linear 2.5s;
+}
+
+#calculator.animate #six span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 2.5s;
+  transition: -webkit-transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s, -webkit-transform 0.5s linear 2.5s;
+}
+
+#calculator.animate #six span:nth-of-type(3) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.25s linear 3s;
+  transition: -webkit-transform 0.25s linear 3s;
+  transition: transform 0.25s linear 3s;
+  transition: transform 0.25s linear 3s, -webkit-transform 0.25s linear 3s;
+}
+
+#calculator.animate #six span:nth-of-type(4) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.25s linear 3s;
+  transition: -webkit-transform 0.25s linear 3s;
+  transition: transform 0.25s linear 3s;
+  transition: transform 0.25s linear 3s, -webkit-transform 0.25s linear 3s;
+}
+
+#calculator.animate #six span:nth-of-type(5) {
+  -webkit-animation: animate-in 0.96s linear 4.59796s forwards;
+          animation: animate-in 0.96s linear 4.59796s forwards;
+}
+
+#minus {
+  -ms-grid-row: 4;
+  -ms-grid-column: 4;
+  grid-area: minus;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #c21525;
+}
+
+#minus span:nth-of-type(1) {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: -2px;
+  left: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#minus span:nth-of-type(2) {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: -2px;
+  left: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  will-change: transform;
+}
+
+#minus span:nth-of-type(3) {
+  opacity: 0;
+}
+
+#minus:hover {
+  cursor: pointer;
+}
+
+#minus:hover span:nth-of-type(3) {
+  text-shadow: 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525;
+}
+
+#calculator.animate #minus span:nth-of-type(1) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #minus span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #minus span:nth-of-type(3) {
+  -webkit-animation: animate-in 0.79s linear 4.71775s forwards;
+          animation: animate-in 0.79s linear 4.71775s forwards;
+}
+
+#one {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  grid-area: one;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#one span:nth-of-type(1) {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  right: -1px;
+  bottom: -2px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#one span:nth-of-type(2) {
+  opacity: 0;
+}
+
+#one:hover {
+  cursor: pointer;
+}
+
+#one:hover span:nth-of-type(2) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #one span:nth-of-type(1) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #one span:nth-of-type(2) {
+  -webkit-animation: animate-in 1.27s linear 4.69047s forwards;
+          animation: animate-in 1.27s linear 4.69047s forwards;
+}
+
+#two {
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
+  grid-area: two;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#two span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#two span:nth-of-type(2) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  left: -2px;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#two span:nth-of-type(3) {
+  position: absolute;
+  height: 2px;
+  width: calc(100% + 2px);
+  right: -1px;
+  bottom: -2px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  will-change: transform;
+}
+
+#two span:nth-of-type(4) {
+  opacity: 0;
+}
+
+#two:hover {
+  cursor: pointer;
+}
+
+#two:hover span:nth-of-type(4) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #two span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 2.5s;
+  transition: -webkit-transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s;
+  transition: transform 0.5s linear 2.5s, -webkit-transform 0.5s linear 2.5s;
+}
+
+#calculator.animate #two span:nth-of-type(2) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #two span:nth-of-type(3) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #two span:nth-of-type(4) {
+  -webkit-animation: animate-in 1.09s linear 5.20013s forwards;
+          animation: animate-in 1.09s linear 5.20013s forwards;
+}
+
+#three {
+  -ms-grid-row: 5;
+  -ms-grid-column: 3;
+  grid-area: three;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#three span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#three span:nth-of-type(2) {
+  position: absolute;
+  height: 2px;
+  width: calc(100% + 2px);
+  left: -1px;
+  bottom: -2px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  will-change: transform;
+}
+
+#three span:nth-of-type(3) {
+  opacity: 0;
+}
+
+#three:hover {
+  cursor: pointer;
+}
+
+#three:hover span:nth-of-type(3) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #three span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #three span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #three span:nth-of-type(3) {
+  -webkit-animation: animate-in 1.25s linear 4.79659s forwards;
+          animation: animate-in 1.25s linear 4.79659s forwards;
+}
+
+#plus {
+  -ms-grid-row: 5;
+  -ms-grid-column: 4;
+  grid-area: plus;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #c21525;
+}
+
+#plus span:nth-of-type(1) {
+  opacity: 0;
+}
+
+#plus:hover {
+  cursor: pointer;
+}
+
+#plus:hover span:nth-of-type(1) {
+  text-shadow: 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525;
+}
+
+#calculator.animate #plus span:nth-of-type(1) {
+  -webkit-animation: animate-in 0.51s linear 5.07794s forwards;
+          animation: animate-in 0.51s linear 5.07794s forwards;
+}
+
+#zero {
+  -ms-grid-row: 6;
+  -ms-grid-column: 1;
+  grid-area: zero;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#zero span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#zero span:nth-of-type(2) {
+  opacity: 0;
+}
+
+#zero:hover {
+  cursor: pointer;
+}
+
+#zero:hover span:nth-of-type(2) {
+  text-shadow: 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 40px #00a8ff, 0 0 80px #00a8ff, 0 0 120px #00a8ff, 0 0 160px #00a8ff;
+}
+
+#calculator.animate #zero span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #zero span:nth-of-type(2) {
+  -webkit-animation: animate-in 1.48s linear 5.34384s forwards;
+          animation: animate-in 1.48s linear 5.34384s forwards;
+}
+
+#comma {
+  -ms-grid-row: 6;
+  -ms-grid-column: 2;
+  grid-area: comma;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#comma span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -2px;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  will-change: transform;
+}
+
+#comma span:nth-of-type(2) {
+  opacity: 0;
+}
+
+#comma:hover {
+  cursor: pointer;
+}
+
+#comma:hover span:nth-of-type(2) {
+  text-shadow: 0 0 5px #00a8ff, 0 0 5px #00a8ff, 0 0 10px #00a8ff, 0 0 10px #00a8ff, 0 0 20px #00a8ff, 0 0 20px #00a8ff;
+}
+
+#calculator.animate #comma span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3s;
+  transition: -webkit-transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s;
+  transition: transform 0.5s linear 3s, -webkit-transform 0.5s linear 3s;
+}
+
+#calculator.animate #comma span:nth-of-type(2) {
+  -webkit-animation: animate-in 1.23s linear 5.25105s forwards;
+          animation: animate-in 1.23s linear 5.25105s forwards;
+}
+
+#backspace {
+  -ms-grid-row: 6;
+  -ms-grid-column: 3;
+  grid-area: backspace;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#backspace svg {
+  fill: #00a8ff;
+  opacity: 0;
+}
+
+#backspace:hover {
+  cursor: pointer;
+}
+
+#backspace:hover svg {
+  -webkit-filter: drop-shadow(0 0 5px #00a8ff) drop-shadow(0 0 10px #00a8ff);
+          filter: drop-shadow(0 0 5px #00a8ff) drop-shadow(0 0 10px #00a8ff);
+}
+
+#calculator.animate #backspace svg {
+  -webkit-animation: animate-in 1.2s linear 5.10147s forwards;
+          animation: animate-in 1.2s linear 5.10147s forwards;
+}
+
+#equal {
+  -ms-grid-row: 6;
+  -ms-grid-column: 4;
+  grid-area: equal;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #c21525;
+}
+
+#equal span:nth-of-type(1) {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  left: -2px;
+  top: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#equal span:nth-of-type(2) {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: -2px;
+  left: -1px;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+          box-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff, 0 0 9px #ffffff, 0 0 12px #ffffff, 0 0 15px #ffffff, 0 0 18px #ffffff, inset 0 0 3px #ffffff, inset 0 0 6px #ffffff, inset 0 0 9px #ffffff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  will-change: transform;
+}
+
+#equal span:nth-of-type(3) {
+  opacity: 0;
+}
+
+#equal:hover {
+  cursor: pointer;
+}
+
+#equal:hover span:nth-of-type(3) {
+  text-shadow: 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 10px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 20px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 40px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 80px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 120px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525, 0 0 160px #c21525;
+}
+
+#calculator.animate #equal span:nth-of-type(1) {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #equal span:nth-of-type(2) {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition: -webkit-transform 0.5s linear 3.5s;
+  transition: -webkit-transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s;
+  transition: transform 0.5s linear 3.5s, -webkit-transform 0.5s linear 3.5s;
+}
+
+#calculator.animate #equal span:nth-of-type(3) {
+  -webkit-animation: animate-in 0.87s linear 4.87491s forwards;
+          animation: animate-in 0.87s linear 4.87491s forwards;
+}
+
+@-webkit-keyframes animate-in {
+  0% {
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.4;
+  }
+  6% {
+    opacity: 1;
+  }
+  7% {
+    opacity: 0.4;
+  }
+  8% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 0.4;
+  }
+  10% {
+    opacity: 1;
+  }
+  89% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animate-in {
+  0% {
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.4;
+  }
+  6% {
+    opacity: 1;
+  }
+  7% {
+    opacity: 0.4;
+  }
+  8% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 0.4;
+  }
+  10% {
+    opacity: 1;
+  }
+  89% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=style.css.map */
